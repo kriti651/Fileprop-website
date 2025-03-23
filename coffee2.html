@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Coffee House</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-image: url('https://images.unsplash.com/photo-1541167760496-1628856ab772');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgba(139, 69, 19, 0.9);
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        nav {
+            background-color: rgba(101, 67, 33, 0.9);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .coffee-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .coffee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .coffee-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .coffee-img:hover {
+            transform: scale(1.05);
+        }
+
+        .price {
+            color: #8b4513;
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .size-btn {
+            padding: 8px 15px;
+            border: 1px solid #8b4513;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .size-btn.active {
+            background-color: #8b4513;
+            color: white;
+        }
+
+        .add-to-cart {
+            background-color: #8b4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #6b3410;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: rgba(101, 67, 33, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .cart-counter {
+            background-color: #ffd700;
+            color: #8b4513;
+            padding: 5px 10px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <header>
+            <h1>☕ Indian Coffee House</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#cart">Cart <span class="cart-counter">0</span></a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <div class="menu-grid" id="menu">
+                <!-- Filter Coffee Card -->
+                <div class="coffee-card">
+                    <img src='https://images.unsplash.com/photo-1683533698664-12ee473e8c9d?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' alt="Filter Coffee" class="coffee-img">
+                    <h2>South Indian Filter Coffee</h2>
+                    <div class="size-options">
+                        <div class="size-btn active" data-price="25">Small</div>
+                        <div class="size-btn" data-price="35">Medium</div>
+                        <div class="size-btn" data-price="45">Large</div>
+                    </div>
+                    <div class="price">₹25</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+
+                <!-- Masala Chai Card -->
+                <div class="coffee-card">
+                    <img src=https://images.unsplash.com/photo-1630748662359-40a2105640c7?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dalt="Masala Chai" class="coffee-img">
+                    <h2>Masala Chai</h2>
+                    <div class="size-options">
+                        <div class="size-btn active" data-price="20">Small</div>
+                        <div class="size-btn" data-price="30">Medium</div>
+                        <div class="size-btn" data-price="40">Large</div>
+                    </div>
+                    <div class="price">₹20</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+
+                <!-- coffee  -->
+                <div class="coffee-card">
+                    <img src=https://images.unsplash.com/photo-1625033405953-f20401c7d848?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D alt="Cold coffee" class="coffee-img">
+                    <h2>Cold coffee</h2>
+                    <div class="size-options">
+                        <div class="size-btn active" data-price="20">Small</div>
+                        <div class="size-btn" data-price="30">Medium</div>
+                        <div class="size-btn" data-price="40">Large</div>
+                    </div>
+                    <div class="price">₹40</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+
+                <!-- Cold Coffee Card -->
+                <div class="coffee-card">
+                    <img src=https://unsplash.com/photos/clear-glass-filled-ice-coffee-vZOZJH_xkUk.jpg>
+                    <h2>Iced Coffee</h2>
+                  
+                    <div class="size-options">
+                        <div class="size-btn active" data-price="50">Small</div>
+                        <div class="size-btn" data-price="70">Medium</div>
+                        <div class="size-btn" data-price="90">Large</div>
+                    </div>
+                    <div class="price">₹50</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Contact: 📞 60065 12788 | 📍 Ranchi , India</p>
+            <p>Follow us: Instagram | Facebook | Twitter</p>
+        </footer>
+    </div>
+
+    <script>
+        // Size selection functionality
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const price = this.getAttribute('data-price');
+                this.closest('.coffee-card').querySelector('.price').textContent = ₹${price};
+            });
+        });
+
+        // Add to cart functionality
+        let cartCount = 0;
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                cartCount++;
+                document.querySelector('.cart-counter').textContent = cartCount;
+                document.querySelector('.cart-counter').classList.add('pulse');
+                setTimeout(() => {
+                    document.querySelector('.cart-counter').classList.remove('pulse');
+                }, 500);
+                
+                // Show notification
+                const notification = document.createElement('div');
+                notification.textContent = 'Added to cart!';
+                notification.style.position = 'fixed';
+                notification.style.bottom = '20px';
+                notification.style.right = '20px';
+                notification.style.backgroundColor = '#8b4513';
+                notification.style.color = 'white';
+                notification.style.padding = '10px 20px';
+                notification.style.borderRadius = '5px';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
